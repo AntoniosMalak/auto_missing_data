@@ -1,5 +1,5 @@
 
-# Imputation Agent (Python / LangChain optional)
+# Imputation Agent (Python / LangChain)
 
 End-to-end pipeline to:
 1) Profile a CSV.
@@ -9,33 +9,32 @@ End-to-end pipeline to:
 5) Impute full data.
 6) Generate artifacts: `imputed.csv`, `imputation_report.json`, `imputation_report.md`.
 
-You can run it **without any LLM/agent** via CLI, or enable a light **LangChain agent** that orchestrates tools.
+## Modes
+- **Deterministic (no LLM)** — run the pipeline directly.
+- **Agent mode (LLM)** — choose **OpenAI** or **Ollama** local model to orchestrate tools.
 
-## Quick start
-
+## Install
 ```bash
-# 1) Create venv (recommended)
-python -m venv .venv && . .venv/bin/activate  # on Windows: .venv\Scripts\activate
-
-# 2) Install
+python -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
-
-# 3) Run the pipeline (no LLM needed)
-python -m imputation_agent.cli run --csv path/to/your.csv --out outputs
-
-# 4) (Optional) Use the planning Agent (requires OPENAI_API_KEY or another llm in .env)
-python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs
 ```
 
-## Outputs
-- `imputed.csv` — fully imputed dataset
-- `imputation_report.json` — machine-readable summary
-- `imputation_report.md` — human-readable summary
-- `imputers.joblib` — persisted fitted imputers
+## Deterministic
+```bash
+python -m imputation_agent.cli run --csv path/to/your.csv --out outputs
+```
 
-## Config
-See `src/imputation_agent/config.py` for defaults. Override via CLI flags.
+## Agent with Ollama (local)
+```bash
+# Ensure Ollama is running and model is available:
+# ollama pull llama3.1:8b-instruct
+python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs --provider ollama --model "llama3.1:8b-instruct"
+```
 
-## Notes
-- For very large datasets, start with the baseline methods (median/mode) and limit KNN/MICE via `--max-candidates` and `--budget-seeds`.
-- Agent mode is optional. The deterministic pipeline works standalone.
+## Agent with OpenAI (cloud)
+```bash
+export OPENAI_API_KEY=sk-...
+python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs --provider openai --model gpt-4o-mini
+```
+
+Outputs in `outputs/`: `imputed.csv`, `imputation_report.json`, `imputation_report.md`, `imputers.joblib`.
