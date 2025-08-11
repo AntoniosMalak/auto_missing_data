@@ -21,10 +21,10 @@ python -m venv venv && . venv/bin/activate  # on Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # 3) Run the pipeline (no LLM needed)
-python -m imputation_agent.cli run --csv path/to/your.csv --out outputs
+python -m src.imputation_agent.cli run --csv path/to/your.csv --out outputs
 
 # 4) (Optional) Use the planning Agent (requires OPENAI_API_KEY or another llm in .env)
-python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs
+python -m src.imputation_agent.cli plan-run --csv path/to/your.csv --out outputs
 ```
 
 ## Outputs
