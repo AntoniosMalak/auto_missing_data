@@ -1,0 +1,16 @@
+
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "imputation-agent"
+version = "0.1.0"
+description = "End-to-end imputation pipeline with optional agent planning"
+readme = "README.md"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+imputation_agent = ["*.md"]
