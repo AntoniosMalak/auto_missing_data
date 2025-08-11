@@ -1,15 +1,13 @@
 
 from __future__ import annotations
 import json
-from typing import Optional
 import pandas as pd
+from typing import Optional
 from .profiling import infer_profile, parse_datetimes_inplace
 from .config import PipelineConfig
 from .runner import run_pipeline
 
-
 def tool_profile(csv_path: str) -> str:
-    """Profile the CSV and return a JSON summary string."""
     df = pd.read_csv(csv_path)
     parse_datetimes_inplace(df)
     prof = infer_profile(df)
@@ -20,11 +18,9 @@ def tool_profile(csv_path: str) -> str:
         "has_datetime_index": prof.has_datetime_index
     })
 
-
-def tool_run_pipeline(csv_path: str, out_dir: str = "outputs", cfg: Optional[PipelineConfig] = None) -> str:
-    """Run the full pipeline and return output paths as JSON string."""
+def tool_run_pipeline(csv_path: str, out_dir: str = "outputs", cfg: Optional[PipelineConfig] = None, use_taxonomy: bool = True) -> str:
     cfg = cfg or PipelineConfig()
-    out_csv, report_json, results, selection, profile = run_pipeline(csv_path, out_dir, cfg)
+    out_csv, report_json, results, selection, profile = run_pipeline(csv_path, out_dir, cfg, use_taxonomy=use_taxonomy)
     return json.dumps({
         "imputed_csv": out_csv,
         "report_json": report_json,

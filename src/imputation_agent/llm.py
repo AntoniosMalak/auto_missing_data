@@ -6,10 +6,6 @@ from dotenv import load_dotenv
 Provider = Literal["openai", "ollama"]
 
 def load_llm(provider: Provider="ollama", model: Optional[str]=None, temperature: float=0.0):
-    """Return a LangChain-compatible chat model given a provider.
-    - provider="openai" uses langchain_openai.ChatOpenAI (requires OPENAI_API_KEY)
-    - provider="ollama" uses langchain_community.chat_models.ChatOllama (requires local Ollama)
-    """
     load_dotenv()
     if provider == "openai":
         from langchain_openai import ChatOpenAI

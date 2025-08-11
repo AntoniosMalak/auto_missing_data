@@ -5,7 +5,6 @@ import numpy as np
 from dataclasses import dataclass
 from typing import List, Optional
 
-
 @dataclass
 class ColumnProfile:
     name: str
@@ -14,7 +13,6 @@ class ColumnProfile:
     cardinality: Optional[int] = None
     is_time: bool = False
 
-
 @dataclass
 class Profile:
     n_rows: int
@@ -22,13 +20,11 @@ class Profile:
     columns: List[ColumnProfile]
     has_datetime_index: bool
 
-
 def infer_profile(df: pd.DataFrame) -> Profile:
     cols = []
     for c in df.columns:
         s = df[c]
         nonna = s.dropna()
-        # infer dtype
         if len(nonna) == 0:
             dtype = "unknown"
         elif np.issubdtype(nonna.dtype, np.number):
@@ -40,18 +36,12 @@ def infer_profile(df: pd.DataFrame) -> Profile:
         else:
             dtype = "categorical"
         miss = s.isna().mean()
-        card = None
-        if dtype in ("categorical", "boolean"):
-            card = s.nunique(dropna=True)
-        is_time = dtype == "datetime"
-        cols.append(ColumnProfile(name=c, dtype=dtype, missing_rate=miss, cardinality=card, is_time=is_time))
-
+        card = s.nunique(dropna=True) if dtype in ("categorical","boolean") else None
+        cols.append(ColumnProfile(c, dtype, miss, card, dtype=="datetime"))
     has_dt_index = np.issubdtype(df.index.dtype, np.datetime64)
-    return Profile(n_rows=len(df), n_cols=df.shape[1], columns=cols, has_datetime_index=has_dt_index)
-
+    return Profile(len(df), df.shape[1], cols, has_dt_index)
 
 def parse_datetimes_inplace(df: pd.DataFrame) -> None:
-    """Attempt to parse object columns as datetime where feasible."""
     for c in df.columns:
         if df[c].dtype == object:
             try:

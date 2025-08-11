@@ -1,42 +1,40 @@
 
-# Imputation Agent (Python / LangChain)
+# Imputation Agent (Python / LangChain / OpenAI or Ollama)
 
-End-to-end pipeline to:
-1) Profile a CSV.
-2) Try multiple imputation techniques.
-3) Evaluate with mask-and-score.
-4) Pick the best per column.
-5) Impute full data.
-6) Generate artifacts: `imputed.csv`, `imputation_report.json`, `imputation_report.md`.
-
-## Modes
-- **Deterministic (no LLM)** — run the pipeline directly.
-- **Agent mode (LLM)** — choose **OpenAI** or **Ollama** local model to orchestrate tools.
+End-to-end pipeline:
+1) Profile CSV
+2) Try imputation techniques
+3) Mask-and-score evaluation
+4) Pick best per column
+5) Impute full data
+6) Generate artifacts
 
 ## Install
 ```bash
 python -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
-=======
-# 1) Create venv (recommended)
-python -m venv venv && . venv/bin/activate  # on Windows: venv\Scripts\activate
+```
 
-# 2) Install
-pip install -r requirements.txt
-
-# 3) Run the pipeline (no LLM needed)
-python -m src.imputation_agent.cli run --csv path/to/your.csv --out outputs
-
-# 4) (Optional) Use the planning Agent (requires OPENAI_API_KEY or another llm in .env)
-## Agent with Ollama (local)
+## Deterministic
 ```bash
-# Ensure Ollama is running and model is available:
+python -m imputation_agent.cli run --csv path/to/your.csv --out outputs --use-taxonomy
+```
+
+## Agent with Ollama
+```bash
 # ollama pull llama3.1:8b-instruct
-python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs --provider ollama --model "llama3.1:8b-instruct"
-## Agent with OpenAI (cloud)
+python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs --provider ollama --model "llama3.1:8b-instruct" --use-taxonomy
+```
+
+## Agent with OpenAI
 ```bash
 export OPENAI_API_KEY=sk-...
-python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs --provider openai --model gpt-4o-mini
-Outputs in `outputs/`: `imputed.csv`, `imputation_report.json`, `imputation_report.md`, `imputers.joblib`.
-
+python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs --provider openai --model gpt-4o-mini --use-taxonomy
 ```
+
+### Taxonomy
+Rules in `src/imputation_agent/taxonomy.py` choose candidates based on missing%/cardinality/size:
+- Numeric: median → knn (if missing% < 40% & not huge) → mice (if rows < 300k)
+- Categorical: most_frequent (+ constant for high-cardinality & high missing)
+- Boolean: most_frequent
+- Datetime: ffill/bfill
