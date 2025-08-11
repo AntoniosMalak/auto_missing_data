@@ -15,7 +15,7 @@ You can run it **without any LLM/agent** via CLI, or enable a light **LangChain 
 
 ```bash
 # 1) Create venv (recommended)
-python -m venv venv && . .venv/bin/activate  # on Windows: venv\Scripts\activate
+python -m venv venv && . venv/bin/activate  # on Windows: venv\Scripts\activate
 
 # 2) Install
 pip install -r requirements.txt
