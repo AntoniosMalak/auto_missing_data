@@ -33,12 +33,10 @@ python -m src.imputation_agent.cli run --csv path/to/your.csv --out outputs
 # Ensure Ollama is running and model is available:
 # ollama pull llama3.1:8b-instruct
 python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs --provider ollama --model "llama3.1:8b-instruct"
-```
-
 ## Agent with OpenAI (cloud)
 ```bash
 export OPENAI_API_KEY=sk-...
 python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs --provider openai --model gpt-4o-mini
-```
-
 Outputs in `outputs/`: `imputed.csv`, `imputation_report.json`, `imputation_report.md`, `imputers.joblib`.
+
+```
