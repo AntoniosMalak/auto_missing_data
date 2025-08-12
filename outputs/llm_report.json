@@ -1,0 +1,44 @@
+{
+  "dataset_summary": {
+    "n_rows": 7461,
+    "n_cols": 30,
+    "missing_rate_threshold": 0.5,
+    "high_missing_rate_columns": [
+      "event_value_in_usd",
+      "user_id",
+      "user_ltv",
+      "event_dimensions",
+      "ecommerce",
+      "collected_traffic_source",
+      "batch_page_id",
+      "batch_ordering_id",
+      "publisher"
+    ]
+  },
+  "column_decisions": {
+    "impute_event_previous_timestamp": true,
+    "method": "median",
+    "dtype": "numeric"
+  },
+  "comparative_analysis": {
+    "knn_vs_median": {
+      "MAE_imputed_knn": 1179253176633.909,
+      "MAE_imputed_median": 1151079566686.991
+    }
+  },
+  "global_recommendations": {
+    "impute_high_missing_rate_columns": true,
+    "caution_MNAR": true,
+    "leakage_risk": [
+      "user_id",
+      "user_ltv"
+    ]
+  },
+  "risks_and_assumptions": {
+    "MNAR_assumption": true
+  },
+  "next_steps": [
+    "Investigate high missing rate columns",
+    "Consider data leakage risk for user_id and user_ltv"
+  ]
+}

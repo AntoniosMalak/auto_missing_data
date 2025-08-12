@@ -44,6 +44,8 @@ Return a SINGLE JSON object with keys: dataset_summary, column_decisions, compar
     resp = llm.invoke(prompt)
     text = getattr(resp, "content", str(resp))
     try:
+        text = text.replace("```json", "")
+        text = text.replace("```", "")
         return json.loads(text)
     except Exception:
         import re

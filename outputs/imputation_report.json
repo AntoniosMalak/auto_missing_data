@@ -1,0 +1,15 @@
+{
+  "n_rows": 7461,
+  "n_cols": 30,
+  "selection": {
+    "event_previous_timestamp": {
+      "method": "median",
+      "metrics": {
+        "MAE": 1151079566686.991,
+        "runtime_sec": 0.013427257537841797
+      },
+      "dtype": "numeric"
+    }
+  },
+  "timestamp": 1754993648.3359394
+}

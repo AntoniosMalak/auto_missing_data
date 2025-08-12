@@ -1,0 +1,29 @@
+{
+  "event_previous_timestamp": {
+    "mean": {
+      "MAE": 1179253176633.909,
+      "runtime_sec": 0.014547109603881836
+    },
+    "median": {
+      "MAE": 1151079566686.991,
+      "runtime_sec": 0.013427257537841797
+    },
+    "knn": {
+      "MAE": 1179253176633.909,
+      "runtime_sec": 2.3085896968841553
+    },
+    "mice": {
+      "MAE": 1179253176633.909,
+      "runtime_sec": 0.012842655181884766
+    }
+  },
+  "event_value_in_usd": {},
+  "user_id": {},
+  "user_ltv": {},
+  "event_dimensions": {},
+  "ecommerce": {},
+  "collected_traffic_source": {},
+  "batch_page_id": {},
+  "batch_ordering_id": {},
+  "publisher": {}
+}
