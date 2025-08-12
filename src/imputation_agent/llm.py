@@ -12,6 +12,6 @@ def load_llm(provider: Provider="ollama", model: Optional[str]=None, temperature
         return ChatOpenAI(model=model or "gpt-4o-mini", temperature=temperature)
     elif provider == "ollama":
         from langchain_community.chat_models import ChatOllama
-        return ChatOllama(model=model or "llama3.1:8b", temperature=temperature)
+        return ChatOllama(model=model or "llama3.1:8b-instruct", temperature=temperature)
     else:
         raise ValueError(f"Unknown provider: {provider}")

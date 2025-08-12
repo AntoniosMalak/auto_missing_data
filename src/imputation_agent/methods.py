@@ -16,3 +16,14 @@ def imputer_factory(method: str, col_type: str):
     if col_type == "boolean":
         return SimpleImputer(strategy="most_frequent")
     return None
+
+def datetime_fill(series, method: str):
+    import pandas as pd
+    s = pd.to_datetime(series)
+    if method == "ffill_bfill":
+        return s.ffill().bfill()
+    if method == "interpolate_linear":
+        ts = s.view('int64')
+        ts_interp = pd.Series(ts).interpolate(method="linear", limit_direction="both")
+        return pd.to_datetime(ts_interp.astype('int64'))
+    raise ValueError(f"Unknown datetime method: {method}")

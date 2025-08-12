@@ -7,6 +7,8 @@ pydantic>=2.6
 typer>=0.12
 rich>=13.7
 python-dotenv>=1.0
+
+# Agent-related
 langchain>=0.2
 langchain-openai>=0.1
 langchain-community>=0.2

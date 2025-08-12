@@ -8,13 +8,13 @@ class EvalConfig(BaseModel):
     random_state: int = 42
 
 class MethodsConfig(BaseModel):
-    numeric: List[str] = ["median", "knn", "mice"]
-    categorical: List[str] = ["most_frequent"]
+    numeric: List[str] = ["mean", "median", "knn", "mice"]
+    categorical: List[str] = ["most_frequent", "constant"]
     boolean: List[str] = ["most_frequent"]
-    datetime: List[str] = ["ffill_bfill"]
+    datetime: List[str] = ["ffill_bfill", "interpolate_linear"]
 
 class LimitsConfig(BaseModel):
-    max_candidates_per_type: int = 3
+    max_candidates_per_type: int = 4
     max_rows_for_mice: int = 300000
     max_missing_rate_for_knn: float = 0.4
 

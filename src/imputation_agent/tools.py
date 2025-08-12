@@ -6,6 +6,7 @@ from typing import Optional
 from .profiling import infer_profile, parse_datetimes_inplace
 from .config import PipelineConfig
 from .runner import run_pipeline
+from .llm_report import generate_llm_json_report
 
 def tool_profile(csv_path: str) -> str:
     df = pd.read_csv(csv_path)
@@ -24,5 +25,14 @@ def tool_run_pipeline(csv_path: str, out_dir: str = "outputs", cfg: Optional[Pip
     return json.dumps({
         "imputed_csv": out_csv,
         "report_json": report_json,
-        "selection_columns": list(selection.keys())
+        "all_methods_report": f"{out_dir}/all_methods_report.json",
+        "selection": selection
     })
+
+def tool_llm_report(profile_json: str, results_json: str, selection_json: str,
+                    provider: str = "ollama", model: str | None = None, temperature: float = 0.0) -> str:
+    profile = json.loads(profile_json)
+    results = json.loads(results_json)
+    selection = json.loads(selection_json)
+    rep = generate_llm_json_report(profile, results, selection, provider=provider, model=model, temperature=temperature)
+    return json.dumps(rep, ensure_ascii=False)

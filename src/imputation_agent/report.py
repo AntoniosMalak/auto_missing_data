@@ -11,7 +11,7 @@ def render_markdown(out_dir: str, report_json_path: str):
     lines.append(f"- Generated: {ts}")
     lines.append(f"- Rows: {report.get('n_rows')}")
     lines.append(f"- Cols: {report.get('n_cols')}\n")
-    lines.append("## Selection\n```json")
+    lines.append("## Selection (per column)\n```json")
     lines.append(json.dumps(report.get("selection", {}), indent=2))
     lines.append("```\n")
     md_path = os.path.join(out_dir, "imputation_report.md")

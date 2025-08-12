@@ -1,13 +1,13 @@
 
-# Imputation Agent (Python / LangChain / OpenAI or Ollama)
+# Imputation Agent (Evaluation + Taxonomy + LLM JSON Reports)
 
-End-to-end pipeline:
-1) Profile CSV
-2) Try imputation techniques
-3) Mask-and-score evaluation
-4) Pick best per column
-5) Impute full data
-6) Generate artifacts
+Features:
+- Load CSV, profile schema/missingness
+- Try **all configured imputation techniques** per type
+- Evaluate via mask-and-score (MAE for numeric, ACC for categorical/boolean, MAE_days for datetime)
+- Choose best per column and impute full dataset
+- Save **full comparison** (`all_methods_report.json`), **selection** (`imputation_report.json`), and **HTML-like Markdown** report
+- Optional **LLM JSON report** using LangChain with **OpenAI or Ollama**
 
 ## Install
 ```bash
@@ -15,26 +15,25 @@ python -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Deterministic
+## Deterministic run (compare all techniques)
 ```bash
-python -m imputation_agent.cli run --csv path/to/your.csv --out outputs --use-taxonomy
+python -m imputation_agent.cli run --csv path/to/data.csv --out outputs --use-taxonomy --llm-report \
+  --provider ollama --model "llama3.1:8b-instruct"
 ```
 
-## Agent with Ollama
+## Agent run (OpenAI or Ollama)
 ```bash
-# ollama pull llama3.1:8b-instruct
-python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs --provider ollama --model "llama3.1:8b-instruct" --use-taxonomy
-```
+# Ollama
+python -m imputation_agent.cli plan-run --csv path/to/data.csv --out outputs --provider ollama --model "llama3.1:8b-instruct" --use-taxonomy
 
-## Agent with OpenAI
-```bash
+# OpenAI
 export OPENAI_API_KEY=sk-...
-python -m imputation_agent.cli plan-run --csv path/to/your.csv --out outputs --provider openai --model gpt-4o-mini --use-taxonomy
+python -m imputation_agent.cli plan-run --csv path/to/data.csv --out outputs --provider openai --model gpt-4o-mini --use-taxonomy
 ```
 
-### Taxonomy
-Rules in `src/imputation_agent/taxonomy.py` choose candidates based on missing%/cardinality/size:
-- Numeric: median → knn (if missing% < 40% & not huge) → mice (if rows < 300k)
-- Categorical: most_frequent (+ constant for high-cardinality & high missing)
-- Boolean: most_frequent
-- Datetime: ffill/bfill
+Outputs in `outputs/`:
+- `imputed.csv`
+- `all_methods_report.json`
+- `imputation_report.json`
+- `imputation_report.md`
+- (optional) `llm_report.json`
