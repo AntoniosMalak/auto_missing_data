@@ -17,18 +17,18 @@ pip install -r requirements.txt
 
 ## Deterministic run (compare all techniques)
 ```bash
-python -m imputation_agent.cli run --csv path/to/data.csv --out outputs --use-taxonomy --llm-report \
+python -m imputation_agent.cli run --csv path/to/data.csv --out outputs --llm-report \
   --provider ollama --model "llama3.1:8b-instruct"
 ```
 
 ## Agent run (OpenAI or Ollama)
 ```bash
 # Ollama
-python -m imputation_agent.cli plan-run --csv path/to/data.csv --out outputs --provider ollama --model "llama3.1:8b-instruct" --use-taxonomy
+python -m imputation_agent.cli plan-run --csv path/to/data.csv --out outputs --provider ollama --model "llama3.1:8b-instruct"
 
 # OpenAI
 export OPENAI_API_KEY=sk-...
-python -m imputation_agent.cli plan-run --csv path/to/data.csv --out outputs --provider openai --model gpt-4o-mini --use-taxonomy
+python -m imputation_agent.cli plan-run --csv path/to/data.csv --out outputs --provider openai --model gpt-4o-mini
 ```
 
 Outputs in `outputs/`:
