@@ -11,34 +11,207 @@
       "ecommerce",
       "collected_traffic_source",
       "batch_page_id",
-      "batch_ordering_id",
-      "publisher"
+      "batch_ordering_id"
     ]
   },
   "column_decisions": {
-    "impute_event_previous_timestamp": true,
-    "method": "median",
-    "dtype": "numeric"
-  },
-  "comparative_analysis": {
-    "knn_vs_median": {
-      "MAE_imputed_knn": 1179253176633.909,
-      "MAE_imputed_median": 1151079566686.991
+    "event_date": {
+      "method": "median",
+      "metrics": {
+        "MAE": 33.59696157283289,
+        "runtime_sec": 0.013633012771606445
+      }
+    },
+    "event_timestamp": {
+      "method": "median",
+      "metrics": {
+        "MAE": 838227124604.5322,
+        "runtime_sec": 0.012994766235351562
+      }
+    },
+    "event_name": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 1.0,
+        "runtime_sec": 0.014177799224853516
+      }
+    },
+    "event_params": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 0.0,
+        "runtime_sec": 0.01899123191833496
+      }
+    },
+    "event_previous_timestamp": {
+      "method": "median",
+      "metrics": {
+        "MAE": 1151079566686.991,
+        "runtime_sec": 0.013189077377319336
+      }
+    },
+    "event_bundle_sequence_id": {
+      "method": "median",
+      "metrics": {
+        "MAE": 1593.0482573726542,
+        "runtime_sec": 0.015333414077758789
+      }
+    },
+    "event_server_timestamp_offset": {
+      "method": "median",
+      "metrics": {
+        "MAE": 68000578.39142092,
+        "runtime_sec": 0.012691736221313477
+      }
+    },
+    "user_pseudo_id": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 0.013404825737265416,
+        "runtime_sec": 0.014377593994140625
+      }
+    },
+    "privacy_info": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 0.9959785522788204,
+        "runtime_sec": 0.014258861541748047
+      }
+    },
+    "user_properties": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 0.005361930294906166,
+        "runtime_sec": 0.01626276969909668
+      }
+    },
+    "device": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 0.01385165326184093,
+        "runtime_sec": 0.016983509063720703
+      }
+    },
+    "geo": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 0.3668453976764969,
+        "runtime_sec": 0.015283584594726562
+      }
+    },
+    "app_info": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 0.5281501340482574,
+        "runtime_sec": 0.015265941619873047
+      }
+    },
+    "traffic_source": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 0.45308310991957107,
+        "runtime_sec": 0.014631986618041992
+      }
+    },
+    "stream_id": {
+      "method": "median",
+      "metrics": {
+        "MAE": 44086081.64253798,
+        "runtime_sec": 0.013509035110473633
+      }
+    },
+    "platform": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 0.9919571045576406,
+        "runtime_sec": 0.014447927474975586
+      }
+    },
+    "items": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 1.0,
+        "runtime_sec": 0.01596379280090332
+      }
+    },
+    "is_active_user": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 0.9821268990169795,
+        "runtime_sec": 0.018761396408081055
+      }
+    },
+    "batch_event_index": {
+      "method": "median",
+      "metrics": {
+        "MAE": 3.0768543342269883,
+        "runtime_sec": 0.015337944030761719
+      }
+    },
+    "session_traffic_source_last_click": {
+      "method": "most_frequent",
+      "metrics": {
+        "ACC": 0.35075960679177837,
+        "runtime_sec": 0.015247106552124023
+      }
     }
   },
+  "comparative_analysis": {
+    "median_vs_mean": [
+      "event_date",
+      "event_timestamp",
+      "event_previous_timestamp",
+      "event_bundle_sequence_id",
+      "event_server_timestamp_offset",
+      "stream_id",
+      "batch_event_index"
+    ],
+    "most_frequent_vs_constant": [
+      "event_name",
+      "event_params",
+      "user_pseudo_id",
+      "privacy_info",
+      "user_properties",
+      "device",
+      "geo",
+      "app_info",
+      "traffic_source",
+      "items",
+      "is_active_user",
+      "session_traffic_source_last_click"
+    ]
+  },
   "global_recommendations": {
-    "impute_high_missing_rate_columns": true,
-    "caution_MNAR": true,
-    "leakage_risk": [
+    "handle_high_missing_rate_columns": [
+      "event_value_in_usd",
       "user_id",
-      "user_ltv"
+      "user_ltv",
+      "event_dimensions",
+      "ecommerce",
+      "collected_traffic_source",
+      "batch_page_id",
+      "batch_ordering_id"
+    ],
+    "consider_imputation_methods": [
+      "event_previous_timestamp",
+      "event_bundle_sequence_id",
+      "event_server_timestamp_offset"
     ]
   },
   "risks_and_assumptions": {
-    "MNAR_assumption": true
+    "missing_rate_threshold": 0.5,
+    "imputation_method_risks": [
+      "median",
+      "mean",
+      "most_frequent"
+    ],
+    "constant_imputation_risks": [
+      "constant"
+    ]
   },
   "next_steps": [
-    "Investigate high missing rate columns",
-    "Consider data leakage risk for user_id and user_ltv"
+    "Impute missing values in high_missing_rate_columns using median, mean or most_frequent methods.",
+    "Consider imputing event_previous_timestamp, event_bundle_sequence_id and event_server_timestamp_offset columns using median method.",
+    "Handle missing values in user_pseudo_id, privacy_info, user_properties, device, geo, app_info, traffic_source, items, is_active_user and session_traffic_source_last_click columns using most_frequent method."
   ]
 }

@@ -1,29 +1,281 @@
 {
+  "event_date": {
+    "mean": {
+      "MAE": 40.644260612050935,
+      "runtime_sec": 0.014282941818237305
+    },
+    "median": {
+      "MAE": 33.59696157283289,
+      "runtime_sec": 0.013633012771606445
+    },
+    "knn": {
+      "MAE": 40.644260612050935,
+      "runtime_sec": 0.523395299911499
+    },
+    "mice": {
+      "MAE": 40.644260612050935,
+      "runtime_sec": 0.013767719268798828
+    }
+  },
+  "event_timestamp": {
+    "mean": {
+      "MAE": 839422974531.7285,
+      "runtime_sec": 0.012574434280395508
+    },
+    "median": {
+      "MAE": 838227124604.5322,
+      "runtime_sec": 0.012994766235351562
+    },
+    "knn": {
+      "MAE": 839422974531.7285,
+      "runtime_sec": 0.5503947734832764
+    },
+    "mice": {
+      "MAE": 839422974531.7285,
+      "runtime_sec": 0.014373302459716797
+    }
+  },
+  "event_name": {
+    "most_frequent": {
+      "ACC": 1.0,
+      "runtime_sec": 0.014177799224853516
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.012900829315185547
+    }
+  },
+  "event_params": {
+    "most_frequent": {
+      "ACC": 0.0,
+      "runtime_sec": 0.01899123191833496
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.013984918594360352
+    }
+  },
   "event_previous_timestamp": {
     "mean": {
       "MAE": 1179253176633.909,
-      "runtime_sec": 0.014547109603881836
+      "runtime_sec": 0.012554407119750977
     },
     "median": {
       "MAE": 1151079566686.991,
-      "runtime_sec": 0.013427257537841797
+      "runtime_sec": 0.013189077377319336
     },
     "knn": {
       "MAE": 1179253176633.909,
-      "runtime_sec": 2.3085896968841553
+      "runtime_sec": 2.317364454269409
     },
     "mice": {
       "MAE": 1179253176633.909,
-      "runtime_sec": 0.012842655181884766
+      "runtime_sec": 0.013549327850341797
     }
   },
   "event_value_in_usd": {},
+  "event_bundle_sequence_id": {
+    "mean": {
+      "MAE": 2057.50766966304,
+      "runtime_sec": 0.013266801834106445
+    },
+    "median": {
+      "MAE": 1593.0482573726542,
+      "runtime_sec": 0.015333414077758789
+    },
+    "knn": {
+      "MAE": 2057.50766966304,
+      "runtime_sec": 0.5199458599090576
+    },
+    "mice": {
+      "MAE": 2057.50766966304,
+      "runtime_sec": 0.013480901718139648
+    }
+  },
+  "event_server_timestamp_offset": {
+    "mean": {
+      "MAE": 115417438.97456521,
+      "runtime_sec": 0.011788606643676758
+    },
+    "median": {
+      "MAE": 68000578.39142092,
+      "runtime_sec": 0.012691736221313477
+    },
+    "knn": {
+      "MAE": 115417438.97456521,
+      "runtime_sec": 0.5134656429290771
+    },
+    "mice": {
+      "MAE": 115417438.97456521,
+      "runtime_sec": 0.013371944427490234
+    }
+  },
   "user_id": {},
+  "user_pseudo_id": {
+    "most_frequent": {
+      "ACC": 0.013404825737265416,
+      "runtime_sec": 0.014377593994140625
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.012705087661743164
+    }
+  },
+  "privacy_info": {
+    "most_frequent": {
+      "ACC": 0.9959785522788204,
+      "runtime_sec": 0.014258861541748047
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.013467550277709961
+    }
+  },
+  "user_properties": {
+    "most_frequent": {
+      "ACC": 0.005361930294906166,
+      "runtime_sec": 0.01626276969909668
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.012745141983032227
+    }
+  },
+  "user_first_touch_timestamp": {
+    "mean": {
+      "MAE": 4904073281918.552,
+      "runtime_sec": 0.011560440063476562
+    },
+    "median": {
+      "MAE": 4271273091330.2056,
+      "runtime_sec": 0.012696027755737305
+    },
+    "knn": {
+      "MAE": 4904073281918.552,
+      "runtime_sec": 0.5136401653289795
+    },
+    "mice": {
+      "MAE": 4904073281918.552,
+      "runtime_sec": 0.013545989990234375
+    }
+  },
   "user_ltv": {},
+  "device": {
+    "most_frequent": {
+      "ACC": 0.01385165326184093,
+      "runtime_sec": 0.016983509063720703
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.014424562454223633
+    }
+  },
+  "geo": {
+    "most_frequent": {
+      "ACC": 0.3668453976764969,
+      "runtime_sec": 0.015283584594726562
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.01419973373413086
+    }
+  },
+  "app_info": {
+    "most_frequent": {
+      "ACC": 0.5281501340482574,
+      "runtime_sec": 0.015265941619873047
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.013488054275512695
+    }
+  },
+  "traffic_source": {
+    "most_frequent": {
+      "ACC": 0.45308310991957107,
+      "runtime_sec": 0.014631986618041992
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.013328313827514648
+    }
+  },
+  "stream_id": {
+    "mean": {
+      "MAE": 85481760.09521666,
+      "runtime_sec": 0.013158559799194336
+    },
+    "median": {
+      "MAE": 44086081.64253798,
+      "runtime_sec": 0.013509035110473633
+    },
+    "knn": {
+      "MAE": 85481760.09521666,
+      "runtime_sec": 0.5187194347381592
+    },
+    "mice": {
+      "MAE": 85481760.09521666,
+      "runtime_sec": 0.013238668441772461
+    }
+  },
+  "platform": {
+    "most_frequent": {
+      "ACC": 0.9919571045576406,
+      "runtime_sec": 0.014447927474975586
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.01331329345703125
+    }
+  },
   "event_dimensions": {},
   "ecommerce": {},
+  "items": {
+    "most_frequent": {
+      "ACC": 1.0,
+      "runtime_sec": 0.01596379280090332
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.014105081558227539
+    }
+  },
   "collected_traffic_source": {},
+  "is_active_user": {
+    "most_frequent": {
+      "ACC": 0.9821268990169795,
+      "runtime_sec": 0.018761396408081055
+    }
+  },
+  "batch_event_index": {
+    "mean": {
+      "MAE": 3.7741345752676474,
+      "runtime_sec": 0.015450716018676758
+    },
+    "median": {
+      "MAE": 3.0768543342269883,
+      "runtime_sec": 0.015337944030761719
+    },
+    "knn": {
+      "MAE": 3.7741345752676474,
+      "runtime_sec": 0.5260698795318604
+    },
+    "mice": {
+      "MAE": 3.7741345752676474,
+      "runtime_sec": 0.015612363815307617
+    }
+  },
   "batch_page_id": {},
   "batch_ordering_id": {},
+  "session_traffic_source_last_click": {
+    "most_frequent": {
+      "ACC": 0.35075960679177837,
+      "runtime_sec": 0.015247106552124023
+    },
+    "constant": {
+      "ACC": 0.0,
+      "runtime_sec": 0.01385188102722168
+    }
+  },
   "publisher": {}
 }
