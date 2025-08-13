@@ -6,7 +6,7 @@
       "method": "median",
       "metrics": {
         "MAE": 33.59696157283289,
-        "runtime_sec": 0.013633012771606445
+        "runtime_sec": 0.013577938079833984
       },
       "dtype": "numeric"
     },
@@ -14,7 +14,7 @@
       "method": "median",
       "metrics": {
         "MAE": 838227124604.5322,
-        "runtime_sec": 0.012994766235351562
+        "runtime_sec": 0.013711929321289062
       },
       "dtype": "numeric"
     },
@@ -22,7 +22,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 1.0,
-        "runtime_sec": 0.014177799224853516
+        "runtime_sec": 0.014943599700927734
       },
       "dtype": "categorical"
     },
@@ -30,7 +30,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 0.0,
-        "runtime_sec": 0.01899123191833496
+        "runtime_sec": 0.022380828857421875
       },
       "dtype": "categorical"
     },
@@ -38,7 +38,7 @@
       "method": "median",
       "metrics": {
         "MAE": 1151079566686.991,
-        "runtime_sec": 0.013189077377319336
+        "runtime_sec": 0.015539169311523438
       },
       "dtype": "numeric"
     },
@@ -46,7 +46,7 @@
       "method": "median",
       "metrics": {
         "MAE": 1593.0482573726542,
-        "runtime_sec": 0.015333414077758789
+        "runtime_sec": 0.013358831405639648
       },
       "dtype": "numeric"
     },
@@ -54,7 +54,7 @@
       "method": "median",
       "metrics": {
         "MAE": 68000578.39142092,
-        "runtime_sec": 0.012691736221313477
+        "runtime_sec": 0.013260841369628906
       },
       "dtype": "numeric"
     },
@@ -62,7 +62,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 0.013404825737265416,
-        "runtime_sec": 0.014377593994140625
+        "runtime_sec": 0.014092206954956055
       },
       "dtype": "categorical"
     },
@@ -70,7 +70,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 0.9959785522788204,
-        "runtime_sec": 0.014258861541748047
+        "runtime_sec": 0.01372075080871582
       },
       "dtype": "categorical"
     },
@@ -78,7 +78,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 0.005361930294906166,
-        "runtime_sec": 0.01626276969909668
+        "runtime_sec": 0.017277956008911133
       },
       "dtype": "categorical"
     },
@@ -86,7 +86,7 @@
       "method": "median",
       "metrics": {
         "MAE": 4271273091330.2056,
-        "runtime_sec": 0.012696027755737305
+        "runtime_sec": 0.012869119644165039
       },
       "dtype": "numeric"
     },
@@ -94,7 +94,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 0.01385165326184093,
-        "runtime_sec": 0.016983509063720703
+        "runtime_sec": 0.014526128768920898
       },
       "dtype": "categorical"
     },
@@ -102,7 +102,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 0.3668453976764969,
-        "runtime_sec": 0.015283584594726562
+        "runtime_sec": 0.014164924621582031
       },
       "dtype": "categorical"
     },
@@ -110,7 +110,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 0.5281501340482574,
-        "runtime_sec": 0.015265941619873047
+        "runtime_sec": 0.014382600784301758
       },
       "dtype": "categorical"
     },
@@ -118,7 +118,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 0.45308310991957107,
-        "runtime_sec": 0.014631986618041992
+        "runtime_sec": 0.014776229858398438
       },
       "dtype": "categorical"
     },
@@ -126,7 +126,7 @@
       "method": "median",
       "metrics": {
         "MAE": 44086081.64253798,
-        "runtime_sec": 0.013509035110473633
+        "runtime_sec": 0.012836217880249023
       },
       "dtype": "numeric"
     },
@@ -134,7 +134,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 0.9919571045576406,
-        "runtime_sec": 0.014447927474975586
+        "runtime_sec": 0.013709068298339844
       },
       "dtype": "categorical"
     },
@@ -142,7 +142,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 1.0,
-        "runtime_sec": 0.01596379280090332
+        "runtime_sec": 0.013293743133544922
       },
       "dtype": "categorical"
     },
@@ -150,7 +150,7 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 0.9821268990169795,
-        "runtime_sec": 0.018761396408081055
+        "runtime_sec": 0.019277095794677734
       },
       "dtype": "boolean"
     },
@@ -158,7 +158,7 @@
       "method": "median",
       "metrics": {
         "MAE": 3.0768543342269883,
-        "runtime_sec": 0.015337944030761719
+        "runtime_sec": 0.015660762786865234
       },
       "dtype": "numeric"
     },
@@ -166,10 +166,10 @@
       "method": "most_frequent",
       "metrics": {
         "ACC": 0.35075960679177837,
-        "runtime_sec": 0.015247106552124023
+        "runtime_sec": 0.013895511627197266
       },
       "dtype": "categorical"
     }
   },
-  "timestamp": 1754996495.2640438
+  "timestamp": 1755008881.0297582
 }

@@ -36,3 +36,13 @@ Outputs in `outputs/`:
 - `imputation_report.json`
 - `imputation_report.md`
 - (optional) `llm_report.json`
+
+
+## Anomaly Detection
+
+Run per-column anomaly model selection and treatment:
+
+```bash
+python -m imputation_agent.cli anomaly --input-csv data.csv --out-dir out_anom
+```
+This will try multiple detectors per dtype, pick the best by F1 on synthetic anomalies, mark detected anomalies as NaN, then you can run the existing imputation pipeline.

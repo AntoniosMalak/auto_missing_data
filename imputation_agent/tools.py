@@ -19,9 +19,9 @@ def tool_profile(csv_path: str) -> str:
         "has_datetime_index": prof.has_datetime_index
     })
 
-def tool_run_pipeline(csv_path: str, out_dir: str = "outputs", cfg: Optional[PipelineConfig] = None, use_taxonomy: bool = True) -> str:
+def tool_run_pipeline(csv_path: str, out_dir: str = "outputs", cfg: Optional[PipelineConfig] = None) -> str:
     cfg = cfg or PipelineConfig()
-    out_csv, report_json, results, selection, profile = run_pipeline(csv_path, out_dir, cfg, use_taxonomy=use_taxonomy)
+    out_csv, report_json, results, selection, profile = run_pipeline(csv_path, out_dir, cfg)
     return json.dumps({
         "imputed_csv": out_csv,
         "report_json": report_json,
@@ -29,10 +29,10 @@ def tool_run_pipeline(csv_path: str, out_dir: str = "outputs", cfg: Optional[Pip
         "selection": selection
     })
 
-def tool_llm_report(profile_json: str, results_json: str, selection_json: str,
+def tool_llm_report(profile: str, results: str, selection: str,
                     provider: str = "ollama", model: str | None = None, temperature: float = 0.0) -> str:
-    profile = json.loads(profile_json)
-    results = json.loads(results_json)
-    selection = json.loads(selection_json)
+    profile = json.loads(profile)
+    results = json.loads(results)
+    selection = json.loads(selection)
     rep = generate_llm_json_report(profile, results, selection, provider=provider, model=model, temperature=temperature)
     return json.dumps(rep, ensure_ascii=False)

@@ -1,0 +1,239 @@
+{
+  "selection": {
+    "event_date": {
+      "method": "isolation_forest",
+      "metrics": {
+        "precision": 1.0,
+        "recall": 0.9964253798033958,
+        "f1": 0.9982078853046595,
+        "runtime_sec": 1.0376973152160645
+      },
+      "dtype": "numeric"
+    },
+    "event_timestamp": {
+      "method": "isolation_forest",
+      "metrics": {
+        "precision": 0.9901625875637811,
+        "recall": 0.9892761394101877,
+        "f1": 0.9897187685553376,
+        "runtime_sec": 1.08172607421875
+      },
+      "dtype": "numeric"
+    },
+    "event_name": {
+      "method": "rare",
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "runtime_sec": 0.010222673416137695
+      },
+      "dtype": "categorical"
+    },
+    "event_params": {
+      "method": "rare",
+      "metrics": {
+        "precision": 0.049993298485457714,
+        "recall": 1.0,
+        "f1": 0.09522593821802401,
+        "runtime_sec": 0.023043394088745117
+      },
+      "dtype": "categorical"
+    },
+    "event_previous_timestamp": {
+      "method": "iqr",
+      "metrics": {
+        "precision": 0.5537487854906618,
+        "recall": 1.0,
+        "f1": 0.7127904636235546,
+        "runtime_sec": 0.006505250930786133
+      },
+      "dtype": "numeric"
+    },
+    "event_bundle_sequence_id": {
+      "method": "zscore",
+      "metrics": {
+        "precision": 0.6629384255392158,
+        "recall": 0.6094727435210009,
+        "f1": 0.6349298591279066,
+        "runtime_sec": 0.010951757431030273
+      },
+      "dtype": "numeric"
+    },
+    "event_server_timestamp_offset": {
+      "method": "zscore",
+      "metrics": {
+        "precision": 0.9735347310851625,
+        "recall": 0.6541554959785523,
+        "f1": 0.7777845484176172,
+        "runtime_sec": 0.012871503829956055
+      },
+      "dtype": "numeric"
+    },
+    "user_pseudo_id": {
+      "method": "rare",
+      "metrics": {
+        "precision": 0.05172174871603114,
+        "recall": 1.0,
+        "f1": 0.09835633561220603,
+        "runtime_sec": 0.015042304992675781
+      },
+      "dtype": "categorical"
+    },
+    "privacy_info": {
+      "method": "rare",
+      "metrics": {
+        "precision": 0.9105047876369704,
+        "recall": 1.0,
+        "f1": 0.9531540403178277,
+        "runtime_sec": 0.008811473846435547
+      },
+      "dtype": "categorical"
+    },
+    "user_properties": {
+      "method": "rare",
+      "metrics": {
+        "precision": 0.049993298485457714,
+        "recall": 1.0,
+        "f1": 0.09522593821802401,
+        "runtime_sec": 0.021196842193603516
+      },
+      "dtype": "categorical"
+    },
+    "user_first_touch_timestamp": {
+      "method": "zscore",
+      "metrics": {
+        "precision": 0.9507647650854789,
+        "recall": 0.612153708668454,
+        "f1": 0.744426166084358,
+        "runtime_sec": 0.01074838638305664
+      },
+      "dtype": "numeric"
+    },
+    "device": {
+      "method": "rare",
+      "metrics": {
+        "precision": 0.0522726227023003,
+        "recall": 1.0,
+        "f1": 0.09935186281414814,
+        "runtime_sec": 0.012905597686767578
+      },
+      "dtype": "categorical"
+    },
+    "geo": {
+      "method": "rare",
+      "metrics": {
+        "precision": 0.4461726744016155,
+        "recall": 1.0,
+        "f1": 0.6170391565324661,
+        "runtime_sec": 0.008316993713378906
+      },
+      "dtype": "categorical"
+    },
+    "app_info": {
+      "method": "rare",
+      "metrics": {
+        "precision": 0.49557149651983085,
+        "recall": 1.0,
+        "f1": 0.6627185053614894,
+        "runtime_sec": 0.00804281234741211
+      },
+      "dtype": "categorical"
+    },
+    "traffic_source": {
+      "method": "rare",
+      "metrics": {
+        "precision": 0.8015816838017868,
+        "recall": 1.0,
+        "f1": 0.8898628034602064,
+        "runtime_sec": 0.008078575134277344
+      },
+      "dtype": "categorical"
+    },
+    "stream_id": {
+      "method": "lof",
+      "metrics": {
+        "precision": 0.9886241142534048,
+        "recall": 0.6255585344057194,
+        "f1": 0.7660638746498701,
+        "runtime_sec": 0.9316673278808594
+      },
+      "dtype": "numeric"
+    },
+    "platform": {
+      "method": "rare",
+      "metrics": {
+        "precision": 0.871504864462611,
+        "recall": 1.0,
+        "f1": 0.9313387370122879,
+        "runtime_sec": 0.008069753646850586
+      },
+      "dtype": "categorical"
+    },
+    "items": {
+      "method": "rare",
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "runtime_sec": 0.008790731430053711
+      },
+      "dtype": "categorical"
+    },
+    "is_active_user": {
+      "method": "none",
+      "metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "runtime_sec": 0.0033919811248779297
+      },
+      "dtype": "boolean"
+    },
+    "batch_event_index": {
+      "method": "zscore",
+      "metrics": {
+        "precision": 0.8428673908616298,
+        "recall": 0.6058981233243967,
+        "f1": 0.7046907735057591,
+        "runtime_sec": 0.010274410247802734
+      },
+      "dtype": "numeric"
+    },
+    "session_traffic_source_last_click": {
+      "method": "rare",
+      "metrics": {
+        "precision": 0.4612809619251886,
+        "recall": 1.0,
+        "f1": 0.6311096611641088,
+        "runtime_sec": 0.008924484252929688
+      },
+      "dtype": "categorical"
+    }
+  },
+  "counts": {
+    "event_date": 261,
+    "event_timestamp": 372,
+    "event_name": 0,
+    "event_params": 7461,
+    "event_previous_timestamp": 237,
+    "event_bundle_sequence_id": 142,
+    "event_server_timestamp_offset": 13,
+    "user_pseudo_id": 7201,
+    "privacy_info": 39,
+    "user_properties": 7461,
+    "user_first_touch_timestamp": 211,
+    "device": 7122,
+    "geo": 488,
+    "app_info": 399,
+    "traffic_source": 98,
+    "stream_id": 3,
+    "platform": 58,
+    "items": 0,
+    "is_active_user": 0,
+    "batch_event_index": 109,
+    "session_traffic_source_last_click": 437
+  },
+  "n_rows": 7461,
+  "n_cols": 30
+}
