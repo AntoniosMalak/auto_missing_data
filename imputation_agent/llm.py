@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 Provider = Literal["openai", "ollama"]
 
-def load_llm(provider: Provider="ollama", model: Optional[str]=None, temperature: float=0.0):
+def load_llm(provider: Provider = "ollama", model: Optional[str] = None, temperature: float = 0.0):
     load_dotenv()
     if provider == "openai":
         from langchain_openai import ChatOpenAI

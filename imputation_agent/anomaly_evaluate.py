@@ -5,9 +5,7 @@ import pandas as pd
 from typing import Tuple, Dict
 
 def inject_anomalies(series: pd.Series, dtype: str, frac: float = 0.05, seed: int = 42) -> Tuple[pd.Series, pd.Series]:
-    """
-    Returns (corrupted_series, is_anomaly_mask)
-    """
+    """Returns (corrupted_series, is_anomaly_mask)"""
     rng = np.random.default_rng(seed)
     s = series.copy()
     n = len(s.dropna())
@@ -33,9 +31,6 @@ def inject_anomalies(series: pd.Series, dtype: str, frac: float = 0.05, seed: in
         new_vals = [f"__UNSEEN_{i}__" for i in range(k)]
         s.loc[idx] = new_vals
         mask.loc[idx] = True
-    else:
-        # fallback: mark none
-        pass
     return s, mask
 
 def f1_score_from_masks(true_mask: pd.Series, pred_mask: pd.Series) -> Dict[str, float]:

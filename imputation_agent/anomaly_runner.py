@@ -18,7 +18,7 @@ def try_anomaly_methods(df: pd.DataFrame, profile, methods_map: Dict[str, List[s
             continue
         for m in methods:
             det = DETECTORS.get(col_type, {}).get(m)
-            if det is None: 
+            if det is None:
                 continue
             metrics_accum = []
             t0 = time.time()
@@ -38,17 +38,15 @@ def try_anomaly_methods(df: pd.DataFrame, profile, methods_map: Dict[str, List[s
 def pick_best_anomaly_per_column(results, dtype_map):
     selection = {}
     for col, m2m in results.items():
-        if not m2m: 
+        if not m2m:
             continue
         col_type = dtype_map.get(col, "numeric")
-        best = max(m2m.items(), key=lambda kv: kv[1]["f1"])
+        best = max(m2m.items(), key=lambda kv: kv[1]["f1"])  # choose highest F1
         selection[col] = {"method": best[0], "metrics": best[1], "dtype": col_type}
     return selection
 
 def apply_anomaly_treatment(df: pd.DataFrame, selection: Dict[str, dict]) -> Tuple[pd.DataFrame, Dict[str, int]]:
-    """
-    Simple treatment: detected anomalies are set to NaN to be handled by imputation later.
-    """
+    """Simple treatment: detected anomalies are set to NaN to be handled by imputation later."""
     from .anomaly_methods import DETECTORS
     df2 = df.copy()
     counts = {}

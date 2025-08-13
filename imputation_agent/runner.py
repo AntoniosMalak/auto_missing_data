@@ -12,29 +12,21 @@ from .evaluate import mask_for_eval, score_numeric, average_metrics
 from .selector import pick_best_per_column
 
 def _cast_for_imputer(X: pd.DataFrame, col_type: str) -> pd.DataFrame:
-    """
-    Sklearn SimpleImputer refuses dtype=bool. For categorical/boolean, cast to object.
-    """
+    """Sklearn SimpleImputer refuses dtype=bool. For categorical/boolean, cast to object."""
     if col_type in ("categorical", "boolean"):
         return X.astype("object")
     return X
 
 def _restore_boolean_dtype(s: pd.Series) -> pd.Series:
-    # After imputation, if values are truthy/falsy and original intent was boolean, cast back
-    # We treat strings "true"/"false"/"1"/"0" and ints 1/0 appropriately.
     mapping = {"true": True, "false": False, "1": True, "0": False}
     def coerce(v):
-        if isinstance(v, bool):
-            return v
-        if isinstance(v, (int, np.integer)):
-            return bool(v)
+        if isinstance(v, bool): return v
+        if isinstance(v, (int, np.integer)): return bool(v)
         if isinstance(v, str):
             lv = v.strip().lower()
-            if lv in mapping:
-                return mapping[lv]
+            if lv in mapping: return mapping[lv]
         return v
     out = s.map(coerce)
-    # If any non-boolean left, keep as object; else cast to bool
     if out.dropna().map(lambda x: isinstance(x, bool)).all():
         return out.astype(bool)
     return out
@@ -53,7 +45,6 @@ def _safe_apply(method_name: str, col: str, col_type: str, masked_df: pd.DataFra
             imp = imputer_factory(method_name, col_type)
             X = _cast_for_imputer(masked_df[[col]], col_type)
             yhat = pd.Series(imp.fit_transform(X).ravel(), index=X.index).loc[idx]
-            # ensure comparison robust for boolean casting
             y_true = true_vals
             try:
                 yhat_cmp = _restore_boolean_dtype(yhat) if col_type == "boolean" else yhat
@@ -69,28 +60,22 @@ def _safe_apply(method_name: str, col: str, col_type: str, masked_df: pd.DataFra
             return score_numeric(true_vals, yhat)
     except Exception as e:
         warnings.warn(f"[{col}] method={method_name} failed: {e}")
-        if col_type in ("categorical","boolean"):
-            return {"ACC": -1.0}
-        if col_type == "datetime":
-            return {"MAE_days": float("inf")}
+        if col_type in ("categorical","boolean"): return {"ACC": -1.0}
+        if col_type == "datetime": return {"MAE_days": float("inf")}
         return {"MAE": float("inf")}
 
 def try_methods(df: pd.DataFrame, profile, methods_map: Dict[str, List[str]], seeds: List[int]) -> Dict[str, Dict[str, Dict[str, float]]]:
     results: Dict[str, Dict[str, Dict[str, float]]] = {}
     for cp in profile.columns:
         col = cp.name
-        # Skip non-scalar cells (lists/dicts)
         if df[col].apply(lambda x: isinstance(x, (list, dict))).any():
             results[col] = {}
             continue
-
         col_type = cp.dtype if cp.dtype in ("numeric", "categorical", "boolean", "datetime") else "numeric"
         methods = methods_map.get(col_type, methods_map.get("numeric", []))
         results[col] = {}
-
         if df[col].dropna().shape[0] <= 1:
             continue
-
         for m in methods:
             metrics_list = []
             t0 = time.time()
@@ -110,7 +95,6 @@ def impute_full(df: pd.DataFrame, selection: Dict[str,Dict]) -> Tuple[pd.DataFra
     for col, info in selection.items():
         key = (info["dtype"], info["method"])
         buckets.setdefault(key, []).append(col)
-
     for (dtype, method), cols in buckets.items():
         if dtype == "datetime":
             chosen = method if method in ("ffill_bfill","interpolate_linear") else "ffill_bfill"
@@ -121,7 +105,6 @@ def impute_full(df: pd.DataFrame, selection: Dict[str,Dict]) -> Tuple[pd.DataFra
         X = _cast_for_imputer(df_imp[cols], dtype)
         transformed = imp.fit_transform(X)
         df_imp[cols] = transformed
-        # restore boolean dtype if needed
         if dtype == "boolean":
             for c in cols:
                 df_imp[c] = _restore_boolean_dtype(df_imp[c])
@@ -158,6 +141,12 @@ def run_pipeline(csv_path: str, out_dir: str, cfg: PipelineConfig):
         "n_cols": profile.n_cols,
         "selection": selection,
         "timestamp": time.time(),
+        # helpful artifact paths for LLM report
+        "artifacts": {
+            "imputed_csv": out_csv,
+            "all_methods_report": all_methods_path,
+            "report_json": os.path.join(out_dir, "imputation_report.json"),
+        },
     }
     report_json = os.path.join(out_dir, "imputation_report.json")
     with open(report_json, "w", encoding="utf-8") as f:
