@@ -63,6 +63,7 @@ def run_with_anomaly(
     os.makedirs(out, exist_ok=True)
     import pandas as pd
     df_raw = pd.read_csv(csv)
+    df_raw.drop_duplicates(inplace=True)
     parse_datetimes_inplace(df_raw)
     profile = infer_profile(df_raw)
 
