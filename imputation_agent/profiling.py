@@ -1,5 +1,6 @@
 
 from __future__ import annotations
+import warnings
 import pandas as pd
 import numpy as np
 from dataclasses import dataclass
@@ -45,7 +46,13 @@ def parse_datetimes_inplace(df: pd.DataFrame) -> None:
     for c in df.columns:
         if df[c].dtype == object:
             try:
-                parsed = pd.to_datetime(df[c], errors="raise")
+                with warnings.catch_warnings():
+                    warnings.filterwarnings(
+                        "ignore",
+                        category=UserWarning,
+                        message="Could not infer format*"
+                    )
+                    parsed = pd.to_datetime(df[c], errors="raise")
                 if parsed.notna().mean() > 0.9:
                     df[c] = parsed
             except Exception:
