@@ -235,4 +235,4 @@ Example (abridged):
 
 ## License
 
-MIT (or your preferred license).
+MIT
